@@ -86,6 +86,14 @@ async def price_handler(message: Message):
     )
 
 
+def get_ai_answer(user_text):
+    return f"Тестовый ИИ получил сообщение: {user_text}"
+
+@dp.message()
+async def chat_with_ai(message: Message):
+    answer = get_ai_answer(message.text or "")
+    await message.answer(answer)
+
 @dp.message()
 async def echo_handler(message: Message):
     await message.answer("Ты написал: " + message.text)
@@ -93,6 +101,7 @@ async def echo_handler(message: Message):
 async def main():
     print("Бот запущен!")
     await dp.start_polling(bot)
+
 
 if __name__ == "__main__":
     asyncio.run(main())
