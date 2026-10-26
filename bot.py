@@ -86,8 +86,18 @@ async def price_handler(message: Message):
     )
 
 
+SYSTEM_PROMPT = (
+    "Ты — дружелюбный помощник. "
+    "Отвечай кратко и по делу. "
+    "Если не знаешь ответа, не выдумывай."
+)
+
 def get_ai_answer(user_text):
-    return f"Тестовый ИИ получил сообщение: {user_text}"
+    return (
+        f"Инструкция для ИИ: {SYSTEM_PROMPT}\n"
+        f"Сообщение пользователя: {user_text}"
+    )
+
 
 @dp.message()
 async def chat_with_ai(message: Message):
